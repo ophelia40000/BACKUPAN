@@ -237,8 +237,6 @@ class ccreateState extends State<ccreate> {
             MaterialButton(
               height: 40,
               onPressed: () {
-                // getImage();
-
                 if (file != null) {
                   uploadFile();
                 }

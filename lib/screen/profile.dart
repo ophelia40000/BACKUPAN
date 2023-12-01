@@ -2,6 +2,7 @@
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/edit_profile.dart';
 import 'package:flutter_application_1/screen/home_screen.dart';
 import 'package:flutter_application_1/screen/post_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,7 +57,9 @@ class _ProfileState extends State<Profile> {
                 width: 105,
                 child: Container(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>EditScreen()));
+                    },
                     style: TextButton.styleFrom(
                       foregroundColor: globals.warna2,
                       padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),

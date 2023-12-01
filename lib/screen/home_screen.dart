@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/beranda.dart';
 import 'package:flutter_application_1/screen/pengaturan.dart';
+import 'package:flutter_application_1/screen/premium.dart';
 import 'package:flutter_application_1/screen/user.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_application_1/screen/profile.dart';
@@ -489,7 +490,7 @@ class _MailScreenState extends State<MailScreen> {
         body: Stack(
           children: <Widget>[
             Positioned(
-                top: 250,
+                bottom: MediaQuery.of(context).viewInsets.bottom+300,
                 left: 20,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -503,7 +504,7 @@ class _MailScreenState extends State<MailScreen> {
                   ),
                 ))),
               Positioned(
-                  top: 350,
+                  bottom: MediaQuery.of(context).viewInsets.bottom+225,
                   left: 20,
                   child:
                   Container(
@@ -521,7 +522,7 @@ class _MailScreenState extends State<MailScreen> {
                   
                 ),
             Positioned(
-              top: 440,
+              bottom: MediaQuery.of(context).viewInsets.bottom+160,
               left: 20,
               child:
               ElevatedButton(
@@ -582,7 +583,6 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
     return Drawer(
       width: MediaQuery.of(context).size.width-110,
       backgroundColor: globals.warna1,
-
       child:Stack(
       children: <Widget>[
         Positioned(
@@ -694,12 +694,13 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
           left: 50,
           child: ElevatedButton(
             onPressed: () {
-              
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Premium()));
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: const Color.fromARGB(255, 114, 112, 112),
               elevation: 0,
-              backgroundColor: globals.warna1
+              backgroundColor: globals.warna1,
+              
             ),
             child:Text("Premium",style: TextStyle(
             color: globals.warna2,
