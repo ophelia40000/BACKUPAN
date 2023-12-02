@@ -159,52 +159,7 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
               )
-              // child: Stack(
-              //   children: <Widget>[
-                  
-              //     const Positioned(
-              //       child: Text(
-              //         "Trending in Indonesia",
-              //         style: TextStyle(
-              //           fontSize: 25,
-              //           fontWeight: FontWeight.bold,
-              //           color: Colors.grey,
-              //         ),
-              //       ),
-              //     ),
-              //     Positioned(
-              //       top: 30,
-              //       child: Text(
-              //         isi,
-              //         style: TextStyle(
-              //           fontSize: 25,
-              //           fontWeight: FontWeight.bold,
-              //           color: Colors.white,
-              //         ),
-              //       ),
-              //     ),
-              //      Positioned(
-              //       top: 60,
-              //       child: Text(
-              //         jumlah,
-              //         style: TextStyle(
-              //           fontSize: 20,
-              //           color: Colors.grey,
-              //         ),
-              //       ),
-              //     ),
-              //     Positioned(
-              //         top: 0,
-              //         left: 350,
-              //         child: IconButton(
-              //           icon: const Icon(
-              //             Icons.more_vert,
-              //             color: Colors.white,
-              //           ),
-              //           onPressed: () {},
-              //         ))
-              //   ],
-              // ),
+              
             );
   }
   

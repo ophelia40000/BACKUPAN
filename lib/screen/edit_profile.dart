@@ -17,7 +17,6 @@ class EditScreen extends StatefulWidget {
 class _EditScreenState extends State<EditScreen> {
   FirebaseAuth auth=FirebaseAuth.instance;
   TextEditingController name = TextEditingController();
-  TextEditingController number = TextEditingController();
   File? file;
   ImagePicker image = ImagePicker();
   var url;
@@ -40,7 +39,7 @@ class _EditScreenState extends State<EditScreen> {
               backgroundColor: globals.warna1
             ),
             onPressed: () {
-              
+              simpan();
             },
             child: Text("Simpan"),
           )
@@ -75,6 +74,7 @@ class _EditScreenState extends State<EditScreen> {
                           child: Image.file(
                             file!,
                             fit: BoxFit.cover,
+                            
                           ),
                           onPressed: () {
                             
@@ -96,7 +96,10 @@ class _EditScreenState extends State<EditScreen> {
                   width:70,
                   decoration: BoxDecoration(
                     color: Colors.purple,
-                    shape: BoxShape.circle
+                    shape: BoxShape.circle,
+                    image: DecorationImage(image: NetworkImage(
+                      url.toString()),
+                      fit: BoxFit.fill)
                   ),
                   child: file == null
                       ? IconButton(
@@ -111,12 +114,14 @@ class _EditScreenState extends State<EditScreen> {
                         )
                       : MaterialButton(
                           height: 100,
-                          child: Image.file(
-                            file!,
-                            fit: BoxFit.cover,
-                          ),
+                          // child: Image.file(
+                          //   file!,
+                          //   fit: BoxFit.cover,
+                            
+                          // ),
                           onPressed: () {
                             getImage();
+                            uploadFile();
                           },
                         ))
             ),
@@ -162,7 +167,27 @@ class _EditScreenState extends State<EditScreen> {
       setState(() {
         url = url;
       });
-      if (url != null) {
+      // if (url != null) {
+      
+      // await FirebaseFirestore.instance
+      //     .collection('users') 
+      //     .doc(auth.currentUser!.uid).set 
+      //     ({
+      //       'name': name.text,
+      //       'url': url,
+      //     });
+
+      //     globals.nama=name.text;
+      //     globals.url=url;
+
+      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+      // }
+    } on Exception catch (e) {
+      print(e);
+    }
+  }
+  simpan()async{
+    if (url != null) {
       
       await FirebaseFirestore.instance
           .collection('users') 
@@ -177,8 +202,5 @@ class _EditScreenState extends State<EditScreen> {
 
         Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
       }
-    } on Exception catch (e) {
-      print(e);
-    }
   }
 }
