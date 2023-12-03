@@ -822,7 +822,7 @@ class PostFire extends StatefulWidget {
 class _PostFireState extends State<PostFire> {
   final CollectionReference _produk =
       FirebaseFirestore.instance.collection('post');
-  final List<Item> items = List.generate(10, (index) => Item());
+  final List<Item> items = List.generate(1000, (index) => Item());
 
   @override
   Widget build(BuildContext context) {

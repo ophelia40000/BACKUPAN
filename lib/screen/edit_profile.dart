@@ -20,6 +20,9 @@ class _EditScreenState extends State<EditScreen> {
   File? file;
   ImagePicker image = ImagePicker();
   var url;
+  File? file2;
+  ImagePicker image2 = ImagePicker();
+  var url2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +60,13 @@ class _EditScreenState extends State<EditScreen> {
               child: Container(
                   height: 110,
                   width:MediaQuery.of(context).size.width,
-                  color: Colors.blue,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+
+                    image: DecorationImage(image: NetworkImage(
+                      url2.toString()),
+                      fit: BoxFit.fill)
+                  ),
                   child: file == null
                       ? IconButton(
                           icon: Icon(
@@ -66,18 +75,18 @@ class _EditScreenState extends State<EditScreen> {
                             color: globals.warna2,
                           ),
                           onPressed: () {
-                            
                           },
                         )
                       : MaterialButton(
                           height: 100,
-                          child: Image.file(
-                            file!,
-                            fit: BoxFit.cover,
+                          // child: Image.file(
+                          //   file!,
+                          //   fit: BoxFit.cover,
                             
-                          ),
+                          // ),
                           onPressed: () {
-                            
+                            getImage2();
+                            uploadFile2();
                           },
                         ))
             ),
@@ -153,6 +162,7 @@ class _EditScreenState extends State<EditScreen> {
     setState(() {
       file = File(img!.path);
     });
+    await uploadFile();
   }
 
   uploadFile() async {
@@ -167,21 +177,30 @@ class _EditScreenState extends State<EditScreen> {
       setState(() {
         url = url;
       });
-      // if (url != null) {
-      
-      // await FirebaseFirestore.instance
-      //     .collection('users') 
-      //     .doc(auth.currentUser!.uid).set 
-      //     ({
-      //       'name': name.text,
-      //       'url': url,
-      //     });
+    } on Exception catch (e) {
+      print(e);
+    }
+  }
 
-      //     globals.nama=name.text;
-      //     globals.url=url;
+  getImage2() async {
+    var img = await image2.pickImage(source: ImageSource.gallery);
+    setState(() {
+      file2 = File(img!.path);
+    });
+  }
 
-      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
-      // }
+  uploadFile2() async {
+    try {
+      var imagefile = FirebaseStorage.instance
+          .ref()
+          .child("contact_photo")
+          .child("/${name.text}.jpg");
+      UploadTask task = imagefile.putFile(file!);
+      TaskSnapshot snapshot = await task;
+      url2 = await snapshot.ref.getDownloadURL();
+      setState(() {
+        url2 = url2;
+      });
     } on Exception catch (e) {
       print(e);
     }
